@@ -21,7 +21,6 @@ package com.github.retrooper.packetevents.protocol.datawatcher;
 import com.github.retrooper.packetevents.protocol.entity.pose.EntityPose;
 import com.github.retrooper.packetevents.protocol.item.ItemStack;
 import com.github.retrooper.packetevents.protocol.nbt.NBTCompound;
-import com.github.retrooper.packetevents.protocol.world.BlockFace;
 import com.github.retrooper.packetevents.util.Vector3f;
 import com.github.retrooper.packetevents.util.Vector3i;
 import com.github.retrooper.packetevents.wrapper.PacketWrapper;
@@ -148,12 +147,6 @@ public class WatchableObject {
                     }
                 }),
         //Var int
-        DIRECTION(packetWrapper -> {
-            return BlockFace.getBlockFaceByValue(packetWrapper.readVarInt());
-        },
-                (packetWrapper, o) -> {
-                    packetWrapper.writeVarInt(((BlockFace) o).getFaceValue());
-                }),
         OPTIONAL_UUID(packetWrapper -> {
             if (packetWrapper.readBoolean()) {
                 return Optional.of(packetWrapper.readUUID());
